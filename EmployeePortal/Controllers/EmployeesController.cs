@@ -2,7 +2,7 @@
 
 namespace EmployeePortal.Controllers
 {
-    public class EmployeesController1 : Controller
+    public class EmployeesController : Controller
     {
         [HttpGet]
         public IActionResult Add()
