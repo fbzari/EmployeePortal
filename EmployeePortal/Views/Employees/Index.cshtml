@@ -13,7 +13,7 @@
             <th>Salary</th>
             <th>Date Of Birth</th>
             <th>Department</th>
-            <th> </th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,8 @@
                 <td>@employee.Salary</td>
                 <td>@employee.DateOfBirth</td>
                 <td>@employee.Department</td>
-                <td><a href="Employees/View/@employee.Id">View</a></td>
+                <td><a href="Employees/View/@employee.Id">Edit</a></td>
+                <td><a href="Employees/Delete/@employee.Id">Delete</a></td>
             </tr>
         }
     </tbody>
