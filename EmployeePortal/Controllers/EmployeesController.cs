@@ -2,6 +2,7 @@
 using EmployeePortal.Models;
 using EmployeePortal.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeePortal.Controllers
 {
@@ -11,6 +12,12 @@ namespace EmployeePortal.Controllers
         public EmployeesController(MVCDemoDbContext mvcDemoDbContext)
         {
             this.mvcDemoDbContext=mvcDemoDbContext;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var employees = await mvcDemoDbContext.Employees.ToListAsync();
+            return View(employees);
         }
         [HttpGet]
         public IActionResult Add()
