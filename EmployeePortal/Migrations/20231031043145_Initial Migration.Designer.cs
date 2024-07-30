@@ -46,7 +46,7 @@ namespace EmployeePortal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Salary")
+                    b.Property<long>("PhoneNo")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

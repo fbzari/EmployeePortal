@@ -1,7 +1,7 @@
 ﻿@model EmployeePortal.Models.AddEmployeeViewModel
 @{
 }
-<form method="post" action="Add">
+@* <form method="post" action="Add">
     <div class="mb-3">
         <label for="" class="form-label">Name</label>
         <input type="text" class="form-control" asp-for="Name">
@@ -12,7 +12,7 @@
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Salary</label>
-        <input type="number" class="form-control" asp-for="Salary">
+        <input type="number" class="form-control" asp-for="PhoneNo">
     </div>
     <div class="mb-3">
         <label for="" class="form-label">DateOfBirth</label>
@@ -23,4 +23,83 @@
         <input type="text" class="form-control" asp-for="Department">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</form> *@
+
+<!-- This form uses the fabform.io form backend service -->
+<!-- Signup on fabform.io to get your personal form id to save form submissions -->
+
+
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Add Employees Details</h3>
+                    <p>Fill in the data below.</p>
+                    <form class="requires-validation" id="#myForm" method="post" action="Add" novalidate>
+
+                        <div class="col-md-12">
+                            <input class="form-control" type="text"  asp-for="Name" placeholder="Enter Name" required>
+                            <div class="valid-feedback">EmpName field is valid!</div>
+                            <div class="invalid-feedback">EmpName field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input class="form-control" type="email"asp-for="Email" placeholder="E-mail Address" required>
+                            <div class="valid-feedback">Email field is valid!</div>
+                            <div class="invalid-feedback">Email field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <select asp-for="Department" class="form-select mt-3" required>
+                                <option selected disabled value="">Position</option>
+                                <option value="Junior Web Developer">Junior Web Developer</option>
+                                <option value="Senior Web Developer">Senior Web Developer</option>
+                                <option value="Project Manager">Project Manager</option>
+                            </select>
+                            <div class="valid-feedback">You selected a position!</div>
+                            <div class="invalid-feedback">Please select a position!</div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <input 
+                                class="form-control" 
+                                type="number" 
+                                placeholder="Enter Number" 
+                                required
+                                asp-for="PhoneNo"
+                                maxlength="10"
+                                oninput="validateNumberLength(this)">
+                            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                            <div class="invalid-feedback">Number field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input class="form-control" type="date" asp-for="DateOfBirth" required>
+                            <div class="valid-feedback">DOB field is valid!</div>
+                            <div class="invalid-feedback">DOB field cannot be blank!</div>
+                        </div>
+
+
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    function validateNumberLength(input) {
+        if (input.value.length > 10) {
+            input.value = input.value.slice(0, 10); 
+        }
+    }
+</script>

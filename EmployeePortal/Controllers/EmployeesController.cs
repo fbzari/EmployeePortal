@@ -28,12 +28,19 @@ namespace EmployeePortal.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddEmployeeViewModel addEmployeeRequest)
         {
+
+            if (!ModelState.IsValid)
+            {
+                // Return the view with validation errors
+                return View(addEmployeeRequest);
+            }
+
             var employee = new Employee()
             {
                 Id = Guid.NewGuid(),
                 Name = addEmployeeRequest.Name,
                 Email = addEmployeeRequest.Email,
-                Salary = addEmployeeRequest.Salary,
+                PhoneNo = addEmployeeRequest.PhoneNo,
                 DateOfBirth = addEmployeeRequest.DateOfBirth,
                 Department = addEmployeeRequest.Department
 
@@ -55,7 +62,7 @@ namespace EmployeePortal.Controllers
                     Id = employee.Id,
                     Name = employee.Name,
                     Email = employee.Email,
-                    Salary = employee.Salary,
+                    PhoneNo = employee.PhoneNo,
                     DateOfBirth = employee.DateOfBirth,
                     Department = employee.Department
                 };
@@ -73,7 +80,7 @@ namespace EmployeePortal.Controllers
             {
                 employee.Name = model.Name;
                 employee.Email = model.Email;
-                employee.Salary = model.Salary;
+                employee.PhoneNo = model.PhoneNo;
                 employee.DateOfBirth = model.DateOfBirth;
                 employee.Department = model.Department;
 
