@@ -243,3 +243,7 @@ label[for="dt-length-0"], label[for="dt-search-0"], .dt-info {
     color:white;
 }
 
+.trash-icon:hover {
+    color: white; /* Color on hover */
+}
+
