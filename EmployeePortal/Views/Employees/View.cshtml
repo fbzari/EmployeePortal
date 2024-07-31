@@ -57,7 +57,7 @@
 
                         <div class="col-md-12">
                             <input class="form-control" type="email"asp-for="Email" placeholder="E-mail Address" required>
-                            <div class="valid-feedback">Email field is valid!</div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                             <div class="invalid-feedback">Email field cannot be blank!</div>
                         </div>
 
@@ -81,7 +81,7 @@
                                    asp-for="PhoneNo"
                                    maxlength="10"
                                    oninput="validateNumberLength(this)">
-                            <div class="valid-feedback">Number field is valid!</div>
+                            <span asp-validation-for="PhoneNo" class="text-danger"></span>
                             <div class="invalid-feedback">Number field cannot be blank!</div>
                         </div>
 

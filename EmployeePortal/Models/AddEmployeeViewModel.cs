@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EmployeePortal.Models.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmployeePortal.Models
 {
     public class AddEmployeeViewModel
     {
             public string Name { get; set; }
+
+            [EmailAddress(ErrorMessage = "Invalid email format")]
+            [EmailExists(ErrorMessage = "Email already exists.")]
             public string Email { get; set; }
 
             [Required(ErrorMessage = "Phone number is required")]
