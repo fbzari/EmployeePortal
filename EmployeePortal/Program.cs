@@ -13,12 +13,28 @@ var dbSaPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};User ID=sa;Password={dbSaPassword};TrustServerCertificate=True;";
 
 // Data Source=ALPHA;Initial Catalog=employeeDB;User ID=adminEmployee;Password=***********;Trust Server Certificate=True
-builder.Services.AddDbContext<MVCDemoDbContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddDbContext<MVCDemoDbContext>(opt =>
+    opt.UseSqlServer(connectionString, sqlServerOptions =>
+    {
+        sqlServerOptions.EnableRetryOnFailure(
+            maxRetryCount: 5, // Maximum number of retries
+            maxRetryDelay: TimeSpan.FromSeconds(30), // Maximum delay between retries
+            errorNumbersToAdd: null // Additional SQL error numbers to include in the retry logic
+        );
+    })
+);
 
 var app = builder.Build();
 
+// Apply pending migrations
+DbContextExtensions.EnsureDatabaseMigrated(app.Services);
+
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment() && Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") != "true")
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
