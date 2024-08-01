@@ -1,0 +1,39 @@
+version: '3.4'
+
+networks:
+  employeeportal:
+
+services:
+  employeeportaldb:
+    container_name: app-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 8002:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=password@12345#
+    networks:
+      - employeeportal
+
+  employeeportal:
+    container_name: employee-portal
+    image: ${DOCKER_REGISTRY-}employeeportal
+    build:
+      context: .
+      dockerfile: EmployeePortal/Dockerfile
+    ports:
+      - 8001:80 
+      - 443:443
+    depends_on:
+      - employeeportaldb
+    environment:
+      - DB_HOST=employeeportaldb
+      - DB_NAME=employeeDB
+      - DB_PASSWORD=password@12345#
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password@123
+    networks:
+      - employeeportal
+    volumes:
+      - /c/Users/Developer/.aspnet/https:/https/
+
