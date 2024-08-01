@@ -12,18 +12,8 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=password@12345#
-      - MSSQL_PID=Developer
-    volumes:
-      - mssql_data:/var/opt/mssql
-      - ./init.sql:/var/opt/mssql/scripts/init.sql
     networks:
       - employeeportal
-    command: >
-      /bin/bash -c "
-      /opt/mssql/bin/sqlservr &
-      sleep 60s &&
-      /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P password@12345# -d master -i /var/opt/mssql/scripts/init.sql
-      "
 
   employeeportal:
     container_name: employee-portal
@@ -47,5 +37,3 @@ services:
     volumes:
       - /c/Users/Developer/.aspnet/https:/https/
 
-volumes:
-  mssql_data:
