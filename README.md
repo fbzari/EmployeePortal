@@ -1,4 +1,4 @@
-**Project Employee Portal**
+# Project Employee Portal
 
 The Employee Portal is a comprehensive CRUD application designed to manage employee data efficiently. Built with .NET 6.0 using the MVC (Model-View-Controller) pattern, this portal offers a structured and maintainable approach to developing web applications.
 
@@ -15,8 +15,9 @@ Table Design: Offers a traditional and organized layout for displaying employee 
 Bootstrap Card Design: Enhances user experience with a modern and visually appealing design for presenting employee information in a card format.
 
 Here are some screenshots:
--
-**Dashboard Design**
+---
+> Dashboard Design
 ![Main Screen](TableDesign.png)
-**Add Employee Form**
+
+> Add Employee Form
 ![Main Screen](AddForm.png)
