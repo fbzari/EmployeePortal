@@ -30,6 +30,6 @@ Here are some screenshots:
 
 ## Video Tutorial
 
-![]()
+![](EmployeeGif.gif)
 
 
