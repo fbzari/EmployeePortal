@@ -12,3 +12,4 @@ Design Aspects:
 
 Table Design: Offers a traditional and organized layout for displaying employee data, making it easy to view and manage records.
 Bootstrap Card Design: Enhances user experience with a modern and visually appealing design for presenting employee information in a card format.
+![Main Screen](AddForm.png)
