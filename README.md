@@ -19,5 +19,11 @@ Here are some screenshots:
 > Dashboard Design
 ![Main Screen](TableDesign.png)
 
+> Card design
+![Main Screen](Carddesign.png)
+
 > Add Employee Form
 ![Main Screen](AddForm.png)
+
+> Edit Employee Form
+![Main Screen](Editform.png)
